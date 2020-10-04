@@ -10,6 +10,7 @@ const SignUp = () => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
+      .then(() => console.log("登録完了"))
       .catch((err) => {
         console.log(err);
       });
@@ -21,7 +22,14 @@ const SignUp = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">E-mail</label>
-          <input name="email" type="email" id="email" placeholder="email" />
+          <input
+            name="email"
+            type="email"
+            id="email"
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div>
           <label htmlFor="password">Password</label>
@@ -30,6 +38,8 @@ const SignUp = () => {
             type="password"
             id="password"
             placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <button type="submit">Sign Up</button>
