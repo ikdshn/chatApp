@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import firebase from "../config/firebase";
 
-const Login = () => {
+const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,7 +12,10 @@ const Login = () => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => console.log("ログイン成功"))
+      .then(() => {
+        console.log("ログイン成功");
+        history.push("/");
+      })
       .catch((err) => {
         console.log(err);
       });
